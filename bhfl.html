@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc">
+<title>Prime Home Loan Desk – Explore home loans, balance transfer and LAP</title>
+<meta name="description" content="Explore home-loan options, check an indicative EMI, organise documents and track your enquiry. Partners can register to log Prime home-loan files.">
+<meta property="og:title" content="Prime Home Loan Desk">
+<meta property="og:description" content="Your dream home, your loan journey, one connected platform.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f172a'/%3E%3Cpath d='M6 16l10-8 10 8v9H6z' fill='%23f59e0b'/%3E%3C/svg%3E">
+<style>
+:root {
+  --primary: #0f172a;
+  --secondary: #1e40af;
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --shadow-clay: 0 10px 40px -10px rgba(8, 43, 89, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --shadow-clay-hover: 0 20px 50px -12px rgba(8, 43, 89, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
+  --inner-shadow: inset 0 2px 4px rgba(8, 43, 89, 0.04), inset 0 -1px 0 rgba(255, 255, 255, 0.6);
+  --clay-radius: 24px;
+  --success: #16a34a;
+  --danger: #dc2626;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body {
+  font: 16px/1.65 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { line-height: 1.15; margin: 0 0 0.5em; color: var(--primary); font-weight: 800; letter-spacing: -0.02em; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+h3 { font-size: 1.25rem; }
+p { margin: 0 0 1em; color: var(--muted); line-height: 1.7; }
+a { color: var(--secondary); text-decoration: none; transition: color 0.2s; cursor: pointer; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+section { padding: 72px 0; }
+.alt { background: linear-gradient(135deg, #f1f5f9 0%, #f8fafc 100%); border-radius: var(--clay-radius); margin: 24px auto; max-width: 1160px; padding: 72px 24px; }
+
+.clay {
+  background: var(--surface);
+  border-radius: var(--clay-radius);
+  box-shadow: var(--shadow-clay);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.clay:hover { transform: translateY(-6px); box-shadow: var(--shadow-clay-hover); }
+
+header { position: sticky; top: 20px; z-index: 100; margin: 0 auto; max-width: 1160px; padding: 0 24px; }
+.nav-container {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--clay-radius);
+  padding: 16px 28px;
+  box-shadow: var(--shadow-clay);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; gap: 12px; align-items: center; font-weight: 800; color: var(--primary); text-decoration: none; font-size: 1.25rem; }
+.brand svg { flex-shrink: 0; filter: drop-shadow(0 4px 6px rgba(8, 43, 89, 0.15)); }
+nav { display: flex; gap: 28px; align-items: center; }
+nav a { color: var(--muted); font-size: 0.95rem; font-weight: 600; transition: all 0.2s; position: relative; }
+nav a::after { content: ""; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; border-radius: 2px; }
+nav a:hover { color: var(--primary); }
+nav a:hover::after { width: 100%; }
+.burger { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 10px 16px; font: inherit; cursor: pointer; box-shadow: var(--inner-shadow); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+  border-radius: 18px; font: inherit; font-weight: 700; font-size: 0.95rem;
+  cursor: pointer; text-decoration: none; border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-clay);
+}
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-clay-hover); }
+.btn:active { transform: translateY(-1px); }
+.btn-primary { background: linear-gradient(135deg, var(--secondary), #1e3a8a); color: white; }
+.btn-accent { background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: var(--primary); }
+.btn-ghost { background: transparent; color: var(--primary); border: 2px solid var(--border); box-shadow: none; }
+.btn-ghost:hover { background: var(--bg); border-color: var(--muted); }
+.btn.sm { padding: 10px 20px; font-size: 0.9rem; }
+
+.hero { padding: 80px 0 60px; position: relative; overflow: hidden; }
+.hero::before {
+  content: ""; position: absolute; top: -150px; right: -100px; width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 70%); border-radius: 50%;
+}
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; position: relative; z-index: 1; }
+.hero p { font-size: 1.15rem; max-width: 54ch; margin-bottom: 32px; }
+.cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.eyebrow { font-size: 0.85rem; letter-spacing: 0.12em; color: var(--accent); font-weight: 800; text-transform: uppercase; margin-bottom: 16px; display: block; }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.stat { padding: 32px; text-align: center; }
+.stat b { font-size: 2rem; background: linear-gradient(135deg, var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; margin-bottom: 8px; font-weight: 800; }
+.stat span { color: var(--muted); font-weight: 600; }
+
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.panel { padding: 40px; border-radius: var(--clay-radius); }
+.panel.p { background: linear-gradient(135deg, #fef3c7, #fde68a); border: 2px solid #fcd34d; }
+.panel.c { background: var(--surface); border: 1px solid var(--border); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 32px; }
+.card { padding: 32px; cursor: pointer; text-align: left; position: relative; overflow: hidden; }
+.card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--accent), var(--secondary)); opacity: 0; transition: opacity 0.3s; }
+.card:hover::before { opacity: 1; }
+.card h3 { color: var(--primary); margin-bottom: 12px; font-size: 1.2rem; }
+.card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
+.card b { color: var(--secondary); }
+
+.detail { margin-top: 32px; padding: 40px; }
+.detail .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.detail ul { list-style: none; padding: 0; margin: 16px 0; }
+.detail li { padding: 10px 0 10px 28px; position: relative; color: var(--muted); }
+.detail li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+
+form, .box { padding: 40px; }
+.fg { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field.full { grid-column: 1 / -1; }
+label { font-size: 0.9rem; font-weight: 700; color: var(--primary); }
+input, select, textarea {
+  font: inherit; padding: 15px 18px; border: 2px solid var(--border); border-radius: 18px;
+  background: #fafafa; color: var(--text); transition: all 0.2s;
+  box-shadow: var(--inner-shadow);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--secondary); background: var(--surface);
+  box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.08), var(--inner-shadow);
+}
+input::placeholder { color: #94a3b8; }
+.chk { display: flex; align-items: flex-start; gap: 12px; font-weight: 500; font-size: 0.95rem; color: var(--muted); }
+.chk input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--secondary); cursor: pointer; }
+
+.prog { display: flex; gap: 8px; margin-bottom: 32px; }
+.prog i { flex: 1; height: 8px; border-radius: 4px; background: var(--border); box-shadow: var(--inner-shadow); }
+.prog i.on { background: linear-gradient(90deg, var(--accent), var(--accent-light)); box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2); }
+
+.res { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0; }
+.res div { padding: 24px; text-align: center; background: #f8fafc; border-radius: 18px; border: 1px solid var(--border); transition: all 0.3s ease; }
+.res b { display: block; font-size: 1.5rem; color: var(--secondary); margin-top: 8px; font-weight: 800; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.95rem; margin: 24px 0; }
+th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: #f8fafc; color: var(--primary); font-weight: 700; border-radius: 12px 12px 0 0; }
+tr:hover td { background: #f8fafc; }
+
+.steps { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.steps > div { padding: 32px; }
+.steps ol { padding-left: 24px; margin: 16px 0; }
+.steps li { margin-bottom: 12px; color: var(--muted); }
+
+.badge { display: inline-block; padding: 6px 16px; border-radius: 99px; font-size: 0.85rem; font-weight: 800; background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: var(--primary); transition: all 0.3s ease; }
+.badge.success { background: linear-gradient(135deg, #86efac, #4ade80); color: #166534; }
+.badge.danger { background: linear-gradient(135deg, #fecaca, #f87171); color: #991b1b; }
+
+footer { background: var(--surface); border-top: 1px solid var(--border); padding: 60px 0 40px; margin-top: 80px; }
+footer .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; }
+footer b { color: var(--primary); display: block; margin-bottom: 16px; font-size: 1.1rem; font-weight: 800; }
+footer p { color: var(--muted); font-size: 0.95rem; }
+footer a { color: var(--secondary); font-weight: 600; }
+
+.tl { list-style: none; padding: 0; margin: 24px 0; }
+.tl li { display: flex; gap: 16px; padding: 16px 0; align-items: flex-start; border-bottom: 1px solid var(--border); }
+.tl .dot { width: 36px; height: 36px; border-radius: 50%; background: var(--surface); flex: none; display: grid; place-items: center; font-size: 0.9rem; font-weight: 800; color: var(--muted); box-shadow: var(--shadow-clay); border: 2px solid var(--border); }
+.tl li.cur .dot { background: var(--accent); color: var(--primary); border-color: var(--accent); }
+.tl li.done .dot { background: #86efac; color: #166534; border-color: #86efac; }
+
+.err { color: var(--danger); font-size: 0.9rem; margin-top: 8px; }
+.success { color: var(--success); font-size: 0.9rem; margin-top: 8px; }
+.errbox { background: #fef2f2; border: 2px solid #fecaca; color: var(--danger); padding: 16px 20px; border-radius: 18px; margin-bottom: 20px; }
+.successbox { background: #f0fdf4; border: 2px solid #86efac; color: var(--success); padding: 16px 20px; border-radius: 18px; margin-bottom: 20px; }
+
+.ref { font-size: 1.6rem; font-weight: 800; letter-spacing: 0.05em; color: var(--secondary); background: linear-gradient(135deg, #eff6ff, #dbeafe); padding: 16px 24px; border-radius: 18px; display: inline-block; margin: 16px 0; box-shadow: var(--inner-shadow); }
+
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+.modal-content {
+  background: var(--surface); border-radius: var(--clay-radius); padding: 40px; max-width: 480px; width: 100%;
+  position: relative; box-shadow: 0 25px 50px -12px rgba(8, 43, 89, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.8); animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px; background: var(--bg); border: 1px solid var(--border);
+  width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: var(--muted); cursor: pointer; transition: all 0.2s;
+}
+.modal-close:hover { background: var(--surface); color: var(--primary); transform: rotate(90deg); }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media(max-width: 900px) {
+  .burger { display: block; }
+  nav {
+    display: none; position: absolute; top: 84px; left: 24px; right: 24px;
+    background: var(--surface); border-radius: var(--clay-radius); flex-direction: column;
+    align-items: flex-start; padding: 24px; gap: 16px; box-shadow: var(--shadow-clay-hover); border: 1px solid var(--border);
+  }
+  nav.open { display: flex; }
+  .hero-grid, .two, .steps, .detail .cols, .fg { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .hero { padding: 48px 0 32px; }
+  section { padding: 48px 24px; }
+  .alt { margin: 16px 12px; padding: 48px 20px; }
+  .panel { padding: 28px; }
+  .row { flex-direction: column-reverse; }
+  .row .btn { width: 100%; }
+}
+
+.loading { opacity: 0.6; pointer-events: none; position: relative; }
+.loading::after {
+  content: ""; position: absolute; width: 20px; height: 20px;
+  border: 3px solid var(--border); border-top-color: var(--secondary);
+  border-radius: 50%; animation: spin 0.8s linear infinite; right: 16px; top: 50%; transform: translateY(-50%);
+}
+@keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+/* Live Pulse Animation for Calculator */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(2); opacity: 0; }
+}
+.live-dot {
+  width: 8px; height: 8px; background: #16a34a; border-radius: 50%; display: inline-block; margin-right: 6px; position: relative;
+}
+.live-dot::before {
+  content: ''; position: absolute; inset: 0; background: #16a34a; border-radius: 50%;
+  animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+</style>
+</head>
+<body>
+
+<header>
+<div class="nav-container">
+<a class="brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Prime Home Loan Desk home">
+<svg width="36" height="36" viewBox="0 0 32 32" aria-hidden="true">
+<rect width="32" height="32" rx="10" fill="#0f172a"/>
+<path d="M6 16l10-8 10 8v9H6z" fill="#f59e0b"/>
+</svg>
+Prime Home Loan Desk
+</a>
+<button class="burger" id="burger" aria-expanded="false" aria-controls="nav">Menu</button>
+<nav id="nav" aria-label="Main">
+<a href="#products">Home loans</a>
+<a href="#products" data-p="bt">Balance transfer</a>
+<a href="#products" data-p="lap">LAP</a>
+<a href="#emi">EMI Calculator</a>
+<a href="#apply">Check eligibility</a>
+<a href="#partners">Partner with us</a>
+<a href="#track">Track application</a>
+<a class="btn btn-accent sm" href="#apply">Get started</a>
+</nav>
+</div>
+</header>
+
+<main id="top">
+
+<div class="hero">
+<div class="wrap hero-grid">
+<div>
+<span class="eyebrow">Prime Home Loan Desk</span>
+<h1>Your Dream Home Is Closer Than You Think.</h1>
+<p>Explore home-financing options, understand your eligibility, and move through your loan journey with guided support and digital convenience.</p>
+<div class="cta">
+<a class="btn btn-accent" href="#products">Explore Loan Options</a>
+<a class="btn btn-ghost" href="#partners">Become a Partner</a>
+</div>
+<p style="font-size:0.95rem;margin-top:20px">One connected place for enquiries, partner referrals, document checklists and application tracking.</p>
+</div>
+<div class="clay" style="padding:32px;border-radius:28px; animation: float 6s ease-in-out infinite;">
+<svg viewBox="0 0 400 300" role="img" aria-label="Illustration of a modern house" style="width:100%;max-width:480px; filter: drop-shadow(0 10px 20px rgba(8,43,89,0.1));">
+<rect width="400" height="300" rx="24" fill="#e0f2fe"/>
+<circle cx="318" cy="64" r="34" fill="#fbbf24" opacity="0.9"/>
+<rect x="0" y="236" width="400" height="64" fill="#bae6fd"/>
+<rect x="70" y="130" width="220" height="110" fill="#ffffff" rx="8"/>
+<path d="M52 134L180 56l128 78z" fill="#0f172a" opacity="0.95"/>
+<rect x="96" y="160" width="46" height="46" fill="#f59e0b" rx="6"/>
+<rect x="214" y="160" width="46" height="46" fill="#f59e0b" rx="6"/>
+<rect x="164" y="186" width="34" height="54" fill="#1e40af" rx="4"/>
+<rect x="310" y="170" width="10" height="70" fill="#bae6fd"/>
+<circle cx="315" cy="160" r="30" fill="#86efac"/>
+</svg>
+</div>
+</div>
+</div>
+<style>@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }</style>
+
+<section>
+<div class="wrap">
+<div class="two">
+<div class="panel c clay">
+<h2>Find Your Home Loan Journey.</h2>
+<p>Compare products, see the documents you need, and share an enquiry in a few minutes.</p>
+<a class="btn btn-primary" href="#products">Explore Loan Options</a>
+</div>
+<div class="panel p clay">
+<h2>Grow Your Loan Business.</h2>
+<p>Register as a DSA, aggregator, corporate partner or connector and log eligible files.</p>
+<a class="btn btn-accent" href="#partners">Join the Partner Network</a>
+</div>
+</div>
+<div class="stats" id="stats"></div>
+</div>
+</section>
+
+<section class="alt" id="products">
+<div class="wrap">
+<h2>Choose your financing requirement</h2>
+<div class="cards" id="pcards"></div>
+<div class="detail clay" id="pdetail" aria-live="polite"></div>
+</div>
+</section>
+
+<!-- REAL-TIME EMI, FOIR & LTV CALCULATOR -->
+<section id="emi">
+<div class="wrap">
+  <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+    <h2 style="margin: 0;">EMI & Eligibility Calculator</h2>
+    <span class="badge success" style="display: flex; align-items: center; padding: 6px 14px;">
+      <span class="live-dot"></span> Live Calculation
+    </span>
+  </div>
+  <p style="margin-bottom:32px">Type any amount below and watch your EMI, FOIR, and LTV update instantly in real-time.</p>
+  
+  <form id="emiForm" class="fg clay" novalidate>
+    <div class="field full">
+      <label for="productType">Loan Product</label>
+      <select id="productType" onchange="updateCalculator()">
+        <option value="resale">Home Loan – Resale</option>
+        <option value="da">Home Loan – DA / Builder Purchase</option>
+        <option value="bt">Balance Transfer (BT)</option>
+        <option value="lap">Loan Against Property (LAP)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="propertyValue">Property Value (₹)</label>
+      <input id="propertyValue" type="number" min="0" step="100000" value="6000000" inputmode="numeric" oninput="updateCalculator()">
+    </div>
+    <div class="field">
+      <label for="loanAmount">Requested Loan Amount (₹)</label>
+      <input id="loanAmount" type="number" min="1" step="100000" value="5000000" inputmode="numeric" oninput="updateCalculator()">
+    </div>
+    <div class="field">
+      <label for="interestRate">Interest Rate (% p.a.)</label>
+      <input id="interestRate" type="number" min="0" max="40" step="0.01" value="8.50" inputmode="decimal" oninput="updateCalculator()">
+    </div>
+    <div class="field">
+      <label for="tenure">Tenure (Years)</label>
+      <input id="tenure" type="number" min="1" max="40" step="1" value="20" inputmode="numeric" oninput="updateCalculator()">
+    </div>
+    <div class="field">
+      <label for="monthlyIncome">Net Monthly Income (₹)</label>
+      <input id="monthlyIncome" type="number" min="0" step="1000" value="100000" inputmode="numeric" oninput="updateCalculator()">
+    </div>
+    <div class="field">
+      <label for="existingEmi">Existing Monthly EMIs (₹)</label>
+      <input id="existingEmi" type="number" min="0" step="1000" value="0" inputmode="numeric" oninput="updateCalculator()">
+    </div>
+    <div class="field full" style="justify-content:end">
+      <button class="btn btn-primary" type="button" onclick="updateCalculator()">Recalculate</button>
+    </div>
+    <div class="field full err" id="eerr" role="alert"></div>
+  </form>
+
+  <div class="res" id="eres" aria-live="polite" style="margin-top:28px"></div>
+  <p style="font-size:0.9rem; margin-top:20px; color:var(--muted)">
+    * Indicative only. FOIR limits: DA/Builder = 75% (preferential), LAP = 60% (strict, no deviation), Resale/BT = 60%. LTV limits: LAP = 75% max, Home Loans = 80% max. Confirm live rates and eligibility with the authorised lender.
+  </p>
+</div>
+</section>
+
+<section class="alt" id="apply">
+<div class="wrap">
+<h2>Check eligibility and save your enquiry</h2>
+<div class="box clay" id="wiz" aria-live="polite"></div>
+</div>
+</section>
+
+<section id="track">
+<div class="wrap">
+<h2>Track your application</h2>
+<form id="trkForm" class="fg clay" novalidate>
+<div class="field">
+<label for="tref">Reference number</label>
+<input id="tref" placeholder="e.g. PHL-AB12CD34" autocomplete="off">
+</div>
+<div class="field" style="justify-content:end">
+<button class="btn btn-primary" type="submit">Track</button>
+</div>
+</form>
+<div id="trkOut" aria-live="polite" style="margin-top:24px"></div>
+</div>
+</section>
+
+<section class="alt" id="partners">
+<div class="wrap">
+<h2>Your Network Can Open More Doors.</h2>
+<p>Bring customer enquiries, connect with an authorised team, and manage your eligible loan pipeline through one digital workspace.</p>
+<div class="cta" id="pcta" style="margin:24px 0"></div>
+<div class="two">
+<form id="ptForm" class="clay" action="https://formspree.io/f/xdeokqja" method="POST" novalidate>
+<input type="hidden" name="_subject" value="New Partner Registration - Prime Home Loan Desk">
+<input type="hidden" name="_cc" value="saurabh.kumar@bajajhousing.biz,dekhog1234@gmail.com">
+<input type="hidden" name="_template" value="table">
+<h3>Partner registration</h3>
+<div class="fg">
+<div class="field full">
+<label for="pc">Partner type</label>
+<select id="pc" name="Partner_Type">
+<option>Individual DSA</option>
+<option>Aggregator</option>
+<option>Corporate partner</option>
+<option>Builder / developer partner</option>
+<option>Individual connector</option>
+</select>
+</div>
+<div class="field">
+<label for="pn">Name / organisation</label>
+<input id="pn" name="Name_Organisation" autocomplete="organization" required>
+</div>
+<div class="field">
+<label for="pp">Contact person</label>
+<input id="pp" name="Contact_Person" autocomplete="name" required>
+</div>
+<div class="field">
+<label for="pm">Mobile (10 digits)</label>
+<input id="pm" name="Mobile" inputmode="numeric" maxlength="10" autocomplete="tel-national" required>
+</div>
+<div class="field">
+<label for="pe">Email</label>
+<input id="pe" name="Email" type="email" autocomplete="email" required>
+</div>
+<div class="field">
+<label for="pcity">City</label>
+<input id="pcity" name="City" autocomplete="address-level2" required>
+</div>
+<div class="field">
+<label for="ppin">PIN code</label>
+<input id="ppin" name="PIN_Code" inputmode="numeric" maxlength="6" autocomplete="postal-code" required>
+</div>
+<div class="field full">
+<label class="chk">
+<input type="checkbox" name="Consent" id="pcons" required>
+I agree to be contacted about onboarding and confirm the details are correct.
+</label>
+</div>
+<div class="field full err" id="perr" role="alert"></div>
+<div class="field full">
+<button class="btn btn-primary" type="submit" id="pSubmit">Submit registration</button>
+</div>
+</div>
+<div id="pout"></div>
+</form>
+
+<div class="box clay">
+<h3>Indicative payout reference</h3>
+<table>
+<thead>
+<tr><th>Channel / case</th><th>Reference</th></tr>
+</thead>
+<tbody>
+<tr><td>DSA – Net code</td><td>0.60% – 0.95%</td></tr>
+<tr><td>DSA – Gross code</td><td>0.40% – 0.75%</td></tr>
+<tr><td>Connector</td><td>0.50% – 0.55%</td></tr>
+<tr><td>Aggregator</td><td>As per aggregator agreement</td></tr>
+<tr><td>Resale home loan</td><td>about 1%</td></tr>
+<tr><td>DA / builder (SENP, on sanction)</td><td>about 2% reducing to 0.75%</td></tr>
+<tr><td>Insurance attach</td><td>up to about 3% of premium</td></tr>
+</tbody>
+</table>
+<p style="font-size:0.9rem;margin-top:16px">Indicative figures from supplied material; slabs and rules change with policy. Do not add rates together unless an approved policy says so. Confirm with your Sales Manager.</p>
+
+<h3 style="margin-top:32px">Illustrative payout</h3>
+<div class="fg">
+<div class="field">
+<label for="qa">Qualifying loan (₹)</label>
+<input id="qa" type="number" value="3000000" min="0" oninput="payout()">
+</div>
+<div class="field">
+<label for="qr">Illustrative rate (%)</label>
+<input id="qr" type="number" value="0.70" step="0.01" min="0" max="5" oninput="payout()">
+</div>
+</div>
+<p id="qout" aria-live="polite" style="margin-top:16px;font-weight:700;color:var(--primary)"></p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<h2>How it works</h2>
+<div class="steps">
+<div class="clay">
+<h3>For customers</h3>
+<ol>
+<li>Choose your financing requirement.</li>
+<li>Share basic information.</li>
+<li>Complete a preliminary assessment.</li>
+<li>Submit requested documents securely.</li>
+<li>Follow your application journey.</li>
+<li>Receive updates from the authorised team.</li>
+</ol>
+</div>
+<div class="clay">
+<h3>For partners</h3>
+<ol>
+<li>Register your partner profile.</li>
+<li>Complete verification and onboarding.</li>
+<li>Log an eligible customer lead.</li>
+<li>Upload required documents securely.</li>
+<li>Track the case.</li>
+<li>View eligible business and payout records.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+
+<section style="text-align: center; padding: 40px 0 80px;">
+  <button class="btn btn-accent" onclick="toggleConnectModal()" style="font-size: 1.1rem; padding: 18px 36px; border-radius: 99px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    Customer Connect
+  </button>
+</section>
+
+</main>
+
+<footer>
+<div class="wrap">
+<div class="cols">
+<div>
+<b>Prime Home Loan Desk</b>
+<p>A proposed independent platform concept. Not an official portal of Bajaj Housing Finance Limited and not affiliated unless authorised in writing.</p>
+</div>
+<div>
+<b>Explore</b>
+<p>
+<a href="#products">Loan products</a><br>
+<a href="#emi">EMI calculator</a><br>
+<a href="#partners">Partner registration</a>
+</p>
+</div>
+<div>
+<b>Legal</b>
+<p>Privacy policy, terms and grievance contact: to be added once authorised.<br>Data in this demo stays in your own browser.</p>
+</div>
+</div>
+<p style="margin-top:32px;font-size:0.9rem;text-align:center">Rates, eligibility and payouts are indicative and subject to lender policy and credit approval. © Prime Home Loan Desk.</p>
+
+<!-- Saurabh Credit Line -->
+<div style="text-align: center; padding: 24px 0 10px; border-top: 1px solid var(--border); margin-top: 40px;">
+  <p style="font-size: 0.9rem; color: var(--muted); margin: 0; font-weight: 500;">
+    Connect with Saurabh &nbsp;|&nbsp; SM &nbsp;|&nbsp; Made by Saurabh ❤️
+  </p>
+</div>
+
+</div>
+</footer>
+
+<div id="connectModal" class="modal-overlay" style="display: none;" onclick="if(event.target === this) toggleConnectModal()">
+  <div class="modal-content clay">
+    <button class="modal-close" onclick="toggleConnectModal()" type="button">×</button>
+    <h3 style="margin-bottom: 8px;">Customer Connect</h3>
+    <p style="margin-bottom: 24px; font-size: 0.95rem;">Leave your details and our expert team will get back to you shortly.</p>
+    <form action="https://formspree.io/f/xdeokqja" method="POST" id="connectForm">
+      <input type="hidden" name="_subject" value="New Customer Connect Enquiry - Prime Home Loan Desk">
+      <input type="hidden" name="_cc" value="saurabh.kumar@bajajhousing.biz,dekhog1234@gmail.com">
+      <div class="fg" style="gap: 16px;">
+        <div class="field full">
+          <label for="connMobile">Mobile Number *</label>
+          <input id="connMobile" name="Mobile" type="tel" required placeholder="10-digit mobile number" pattern="[6-9]\d{9}">
+        </div>
+        <div class="field full">
+          <label for="connEmail">Email Address *</label>
+          <input id="connEmail" name="Email" type="email" required placeholder="your@email.com">
+        </div>
+        <div class="field full">
+          <button class="btn btn-primary" type="submit" id="connSubmit" style="width: 100%; justify-content: center; margin-top: 8px;">
+            Send Request
+          </button>
+        </div>
+      </div>
+      <div id="connOut"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+"use strict";
+const CONFIG={rate:8.5,tenure:20,minPrime:3500000,stats:[["1 lakh crore+","Assets under management"],["0.3%","Gross NPA"],["2nd largest","Housing finance company in India"]]};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const inr=n=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
+const rid=p=>p+"-"+Array.from(crypto.getRandomValues(new Uint8Array(4)),b=>b.toString(16).padStart(2,"0")).join("").toUpperCase();
+
+function emi(P,annual,years){
+  const n=Math.round(years*12);
+  if(!(P>0)||!(n>0)||annual<0) return null;
+  const r=annual/1200;
+  const e=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  return {emi:e,total:e*n,interest:e*n-P,n};
+}
+
+const PRODUCTS={
+resale:{name:"Home Loan – Resale",desc:"Explore financing for purchasing an existing property from its current owner.",cta:"Explore Resale Home Loan",suits:"Buyers of an existing property from another owner.",
+docs:{"Buyer":["Aadhaar card","PAN card","CIBIL report check","Latest 3 months' salary slips (or ITR if self-employed)","12 months' salary-credit bank statement","Property papers"],"Seller and property (collect upfront)":["Agreement to Sell (ATS)","Seller Aadhaar and PAN","Cancelled cheque","1-year bank account vintage proof","Electricity bill","Property tax receipts"]},
+note:"Self-employed resale cases may follow a special Composite/Compact process. Confirm the exact list with the authorised credit team.",
+fields:[["loc","Property location"],["price","Purchase price (₹)","number"],["ptype","Property type","select",["Apartment","Independent house","Other"]],["seller","Seller details available?","select",["Yes","Not yet"]]]},
+builder:{name:"Home Loan – DA / Builder Purchase",desc:"Explore financing for eligible new, under-construction or ready properties purchased directly from builders.",cta:"Explore Builder Purchase",suits:"Buyers purchasing directly from a builder or developer.",
+docs:{"Builder and project":["Token receipt","Allotment letter","Welcome letter","Payment receipts","Statement of Account (SOA)","Builder-Buyer Agreement (BBA)"],"Buyer":["Aadhaar card","PAN card","CIBIL report check","Latest 3 months' salary slips (or ITR if self-employed)","12 months' salary-credit bank statement"]},
+note:"Project approval (for example RERA status and lender project rules) must be confirmed by the authorised credit team. Never assume it from a builder's name.",
+fields:[["builder","Builder name"],["project","Project name"],["loc","Property location"],["booking","Booking status","select",["Not booked","Token paid","Allotment received","Agreement signed"]],["price","Estimated purchase value (₹)","number"]]},
+bt:{name:"Balance Transfer",desc:"Explore transferring an existing home loan from another lender, with a top-up enquiry where applicable.",cta:"Explore Balance Transfer",suits:"Borrowers with a running home loan elsewhere.",
+docs:{"Balance transfer":["Existing loan sanction letter","Existing loan account statement","Foreclosure letter (if available)","Property papers"],"Buyer":["Aadhaar card","PAN card","CIBIL report check","Latest 3 months' salary slips (or ITR if self-employed)","12 months' salary-credit bank statement"]},
+note:"Confirm outstanding balance and foreclosure charges with the existing lender before relying on any figure.",
+fields:[["lender","Existing lender"],["bal","Approximate outstanding balance (₹)","number"],["oemi","Existing EMI (₹)","number"],["rem","Remaining tenure (years)","number"],["topup","Top-up required?","select",["No","Yes"]]]},
+lap:{name:"Loan Against Property",desc:"Explore financing against eligible owned residential or commercial property.",cta:"Explore LAP",suits:"Owners of residential or commercial property who need funds.",
+docs:{"Applicant":["Aadhaar card","PAN card","CIBIL report check","Latest 3 months' salary slips (or ITR if self-employed)","12 months' salary-credit bank statement"],"Property":["Property papers (title / ownership proof)","Electricity bill","Property tax receipts","ATS or ownership agreement, where applicable"]},
+note:"LAP lending value and tenure are lender-defined (LTV 65-75%, tenure up to ~20-25 yrs). No FOIR deviation is allowed on Salaried LAP cases at any level.",
+fields:[["own","Property ownership","select",["Self-owned","Jointly owned","Other"]],["ptype","Property type","select",["Residential","Commercial"]],["loc","Property location"],["val","Estimated property value (₹)","number"]]}};
+const PROFILE_DOCS={"Salaried / professional":"Professional registration or degree certificate and practice proof, where relevant.","Partnership firm":"Partnership deed, firm PAN, firm bank statements.","Proprietorship":"Proprietorship proof (GST / Shop Act), ITR, business bank statements.","Private limited company":"Company PAN, MOA/AOA, audited financials, director KYC."};
+
+/* Header */
+$("#burger").onclick=e=>{const o=$("#nav").classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",o)};
+$$("#nav a").forEach(a=>a.addEventListener("click",()=>{$("#nav").classList.remove("open");if(a.dataset.p)showProduct(a.dataset.p)}));
+$("#stats").innerHTML=CONFIG.stats.map(s=>`<div class="stat clay"><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join("");
+
+/* Products */
+$("#pcards").innerHTML=Object.entries(PRODUCTS).map(([k,p])=>`<button class="card clay" data-k="${k}" aria-pressed="false"><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><b>${esc(p.cta)}</b></button>`).join("");
+$$(".card").forEach(c=>c.onclick=()=>showProduct(c.dataset.k));
+function showProduct(k){const p=PRODUCTS[k];if(!p)return;$$(".card").forEach(c=>c.setAttribute("aria-pressed",c.dataset.k===k));
+$("#pdetail").innerHTML=`<h2>${esc(p.name)}</h2><p>${esc(p.desc)} <b>May suit:</b> ${esc(p.suits)}</p><div class="cols"><div><h3>Document checklist</h3>${Object.entries(p.docs).map(([h,l])=>`<b>${esc(h)}</b><ul>${l.map(d=>`<li>${esc(d)}</li>`).join("")}</ul>`).join("")}</div><div><h3>Extra documents by profile</h3><ul>${Object.entries(PROFILE_DOCS).map(([a,b])=>`<li><b>${esc(a)}:</b> ${esc(b)}</li>`).join("")}</ul><h3>Process</h3><p>Login → Document check → Credit assessment (Tele-PD) → Collateral and legal → Final approval → Disbursement.</p></div></div><p style="font-size:0.9rem;margin-top:16px;color:var(--muted)">${esc(p.note)} Checklists are reference material and may change; confirm the live list with the authorised team.</p><button class="btn btn-accent" id="startEnq">Start an enquiry for this product</button>`;
+$("#startEnq").onclick=()=>{W.s.product=k;W.step=1;W.render();$("#apply").scrollIntoView()};
+if(document.activeElement&&document.activeElement.classList.contains("card"))$("#pdetail").scrollIntoView({block:"nearest"})}
+showProduct("resale");
+
+/* ENHANCED REAL-TIME EMI, FOIR & LTV CALCULATOR */
+function updateCalculator() {
+  const product = $("#productType").value;
+  const P = +$("#loanAmount").value || 0;
+  const propVal = +$("#propertyValue").value || 0;
+  const r = +$("#interestRate").value || 0;
+  const y = +$("#tenure").value || 0;
+  const income = +$("#monthlyIncome").value || 0;
+  const existingEmi = +$("#existingEmi").value || 0;
+
+  if (P <= 0 || y <= 0) {
+    $("#eerr").textContent = "Enter a loan amount above 0 and a tenure of at least 1 year.";
+    $("#eres").innerHTML = "";
+    return;
+  }
+  $("#eerr").textContent = "";
+
+  const c = emi(P, r, y);
+  if (!c) {
+    $("#eerr").textContent = "Invalid calculation parameters.";
+    $("#eres").innerHTML = "";
+    return;
+  }
+
+  // FOIR Calculation
+  let maxFoir = 0.60; 
+  if (product === 'da') maxFoir = 0.75; 
+  else if (product === 'lap') maxFoir = 0.60; 
+  
+  const totalObligation = c.emi + existingEmi;
+  const foir = income > 0 ? (totalObligation / income) * 100 : 0;
+  const foirOk = foir <= (maxFoir * 100);
+
+  // LTV Calculation
+  let maxLtv = 0.80; 
+  if (product === 'lap') maxLtv = 0.75; 
+  
+  const ltv = propVal > 0 ? (P / propVal) * 100 : 0;
+  const ltvOk = ltv <= (maxLtv * 100);
+
+  // Eligibility Status
+  let statusText = "Likely Eligible";
+  let statusClass = "success";
+  if (!foirOk || !ltvOk) {
+    statusText = "Needs Review / May Require Co-applicant";
+    statusClass = "danger";
+  }
+  if (P < CONFIG.minPrime && product !== 'lap') {
+    statusText = "Below Prime Vertical Threshold (₹35 Lakh+)";
+    statusClass = "danger";
+  }
+
+  // Instant DOM Update with subtle scale animation
+  const eres = $("#eres");
+  eres.style.transform = "scale(0.98)";
+  eres.style.opacity = "0.8";
+  
+  eres.innerHTML = `
+    <div class="clay">
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:4px">Monthly EMI</div>
+      <b>${inr(c.emi)}</b>
+    </div>
+    <div class="clay">
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:4px">FOIR</div>
+      <b style="color:${foirOk ? 'var(--success)' : 'var(--danger)'}">${foir.toFixed(1)}%</b>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Max allowed: ${(maxFoir*100)}%</div>
+    </div>
+    <div class="clay">
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:4px">LTV</div>
+      <b style="color:${ltvOk ? 'var(--success)' : 'var(--danger)'}">${ltv.toFixed(1)}%</b>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:4px">Max allowed: ${(maxLtv*100)}%</div>
+    </div>
+    <div class="clay" style="grid-column: 1 / -1;">
+      <div style="font-size:0.85rem;color:var(--muted);margin-bottom:4px">Indicative Status</div>
+      <span class="badge ${statusClass}" style="font-size:1rem;padding:8px 16px">${statusText}</span>
+    </div>
+  `;
+
+  // Reset animation
+  setTimeout(() => {
+    eres.style.transform = "scale(1)";
+    eres.style.opacity = "1";
+  }, 50);
+}
+
+// Initialize calculator on load
+updateCalculator();
+
+/* Wizard with Formspree */
+const W={step:0,s:{product:"resale",consent:false},
+contact:[["name","Full name"],["mobile","Mobile number (10 digits)","tel"],["email","Email address","email"],["city","City"],["pin","PIN code","tel"],["pref","Preferred contact method","select",["Phone call","WhatsApp","Email"]]],
+profile:[["emp","Employment type","select",["Salaried","Self-employed"]],["cat","Employer / business category"],["income","Approximate monthly income (₹)","number"],["eobl","Existing monthly EMIs (₹, 0 if none)","number"],["amount","Requested loan amount (₹)","number"],["tenure","Preferred tenure (years)","number"],["cibil","Approximate credit score range (optional)","select",["Prefer not to say","Below 650","650–749","750 and above"],true]],
+field(f){const [id,l,t,o,opt]=f;const v=this.s[id]??"";const i="f_"+id;let inp;
+if(t==="select")inp=`<select id="${i}">${o.map(x=>`<option${x===v?" selected":""}>${esc(x)}</option>`).join("")}</select>`;
+else inp=`<input id="${i}" type="${t==="number"?"number":t==="email"?"email":"text"}"${t==="tel"?' inputmode="numeric"':""}${t==="number"?' min="0" inputmode="numeric"':""} value="${esc(v)}">`;
+return `<div class="field"><label for="${i}">${esc(l)}</label>${inp}</div>`},
+fieldsFor(n){return n===1?this.contact:n===2?this.profile:PRODUCTS[this.s.product].fields},
+collect(n){this.fieldsFor(n).forEach(f=>{const e=$("#f_"+f[0]);if(e)this.s[f[0]]=e.value.trim()});if(n===1)this.s.consent=$("#cons").checked},
+validate(n){const s=this.s,e=[];
+if(n===1){if(s.name.length<2)e.push("Enter your full name.");if(!/^[6-9]\d{9}$/.test(s.mobile))e.push("Enter a valid 10-digit Indian mobile number.");if(!/^\S+@\S+\.\S+$/.test(s.email))e.push("Enter a valid email address.");if(!s.city)e.push("Enter your city.");if(!/^\d{6}$/.test(s.pin))e.push("Enter a 6-digit PIN code.");if(!s.consent)e.push("Please agree to be contacted to continue.")}
+if(n===2){if(!(+s.income>0))e.push("Enter your approximate monthly income.");if(s.eobl===""||+s.eobl<0)e.push("Enter existing EMIs (0 if none).");if(!(+s.amount>0))e.push("Enter the loan amount you need.");if(!(+s.tenure>=1&&+s.tenure<=40))e.push("Tenure must be between 1 and 40 years.")}
+if(n===3)PRODUCTS[s.product].fields.forEach(f=>{if(!s[f[0]]&&f[2]!=="select")e.push("Fill in: "+f[1]+".")});
+return e},
+render(){const n=this.step,s=this.s,root=$("#wiz");
+const bar=`<div class="prog" aria-label="Step ${n+1} of 5">${[0,1,2,3,4].map(i=>`<i class="${i<=n?"on":""}"></i>`).join("")}</div>`;
+let h=bar;
+if(n===0)h+=`<h3>1. Select a product</h3><div class="field"><label for="f_product">Product</label><select id="f_product">${Object.entries(PRODUCTS).map(([k,p])=>`<option value="${k}"${k===s.product?" selected":""}>${esc(p.name)}</option>`).join("")}</select></div>`;
+if(n===1)h+=`<h3>2. Contact information</h3><div class="fg">${this.contact.map(f=>this.field(f)).join("")}<div class="field full"><label class="chk"><input type="checkbox" id="cons"${s.consent?" checked":""}>I agree to be contacted by an authorised representative about this enquiry.</label></div></div>`;
+if(n===2)h+=`<h3>3. Employment and finances</h3><div class="fg">${this.profile.map(f=>this.field(f)).join("")}</div><p style="font-size:0.9rem;margin-top:12px;color:var(--muted)">Do not enter Aadhaar, PAN or credit-report details here.</p>`;
+if(n===3)h+=`<h3>4. ${esc(PRODUCTS[s.product].name)} details</h3><div class="fg">${PRODUCTS[s.product].fields.map(f=>this.field(f)).join("")}</div>`;
+if(n===4)h+=this.result();
+if(n<4)h+=`<div class="errbox" id="werr" role="alert" hidden></div><div class="row" style="display:flex;gap:12px;margin-top:24px"><button class="btn btn-ghost" id="back"${n===0?" disabled":""} style="flex:1">Back</button><button class="btn btn-primary" id="next" style="flex:2">${n===3?"See preliminary result":"Continue"}</button></div>`;
+root.innerHTML=h;
+if(n<4){$("#next").onclick=()=>{if(n===0)s.product=$("#f_product").value;else this.collect(n);const er=n===0?[]:this.validate(n);if(er.length){const b=$("#werr");b.hidden=false;b.innerHTML=er.map(esc).join("<br>");return}this.step++;this.render()};$("#back").onclick=()=>{if(n>0){if(n>0&&n<4&&n!==0)this.collect(n);this.step--;this.render()}}}
+else{const sv=$("#save");if(sv)sv.onclick=()=>this.save();const rs=$("#restart");if(rs)rs.onclick=()=>{this.s={product:s.product,consent:false};this.step=0;this.render()}}},
+result(){const s=this.s,p=PRODUCTS[s.product],c=emi(+s.amount,CONFIG.rate,+s.tenure),miss=[];
+if(+s.amount<CONFIG.minPrime)miss.push("Your requested amount is below ₹35 lakh, the usual focus of the Prime vertical. An authorised team member can advise on alternatives.");
+if(s.cibil==="Prefer not to say"||!s.cibil)miss.push("Credit score range not shared (optional). A credit check happens later through the authorised process.");
+if(s.product==="builder")miss.push("Project approval must be confirmed by the authorised credit team.");
+const ratio=c&&+s.income>0?Math.round((c.emi+ +s.eobl)/ +s.income*100):null;
+return `<h3>5. Preliminary result (indicative)</h3><div class="res"><div class="clay">Product<b style="font-size:1rem">${esc(p.name)}</b></div><div class="clay">Requested amount<b>${inr(+s.amount)}</b></div><div class="clay">Estimated EMI<b>${c?inr(c.emi):"–"}</b></div><div class="clay">EMIs as share of income<b>${ratio===null?"–":ratio+"%"}</b></div></div><p style="font-size:0.9rem;margin:16px 0;color:var(--muted)">EMI uses an assumed ${CONFIG.rate}% rate over ${esc(s.tenure)} years. This is not an offer, sanction or credit decision.</p>${miss.length?`<b>Points to confirm</b><ul>${miss.map(m=>`<li>${esc(m)}</li>`).join("")}</ul>`:""}<p><b>Suggested next step:</b> save this enquiry, then an authorised representative can guide you on the documents and the formal application.</p><div id="saved"></div><div class="row" style="display:flex;gap:12px;margin-top:24px"><button class="btn btn-ghost" id="restart" style="flex:1">Start over</button><button class="btn btn-accent" id="save" style="flex:2">Save enquiry and get reference</button></div>`},
+save(){const s=this.s,list=store.get("phl_enq",[]);const ref=rid("PHL");
+const rec={ref,product:s.product,name:s.name,city:s.city,amount:+s.amount,created:new Date().toISOString(),consentAt:new Date().toISOString(),status:"Enquiry saved"};
+list.push(rec);if(!store.set("phl_enq",list)){$("#saved").innerHTML='<div class="errbox" role="alert">Could not save in this browser (storage blocked). Your enquiry was not saved. Please allow site storage and try again.</div>';return}
+$("#saved").innerHTML=`<div class="successbox"><p>Enquiry saved on this device. Your reference:</p><div class="ref">${esc(ref)}</div><p style="font-size:0.9rem;margin-top:12px">Status: Enquiry saved. This is not an application, sanction or approval. Use the tracker below with this reference.</p><p style="margin-top:16px"><b>Next:</b> An email will be sent to our team. You will receive a response at <b>${esc(s.email)}</b></p></div>`;$("#save").disabled=true;$("#tref").value=ref;
+const formData=new FormData();
+formData.append("_subject","New Customer Enquiry - "+ref);
+formData.append("_cc","saurabh.kumar@bajajhousing.biz,dekhog1234@gmail.com");
+formData.append("Reference",ref);formData.append("Product",PRODUCTS[s.product].name);formData.append("Name",s.name);formData.append("Mobile",s.mobile);formData.append("Email",s.email);formData.append("City",s.city);formData.append("PIN",s.pin);formData.append("Preferred_Contact",s.pref);formData.append("Employment_Type",s.emp);formData.append("Category",s.cat);formData.append("Monthly_Income",s.income);formData.append("Existing_EMI",s.eobl);formData.append("Requested_Loan_Amount",s.amount);formData.append("Tenure_Years",s.tenure);formData.append("CIBIL_Range",s.cibil||"Not provided");
+PRODUCTS[s.product].fields.forEach(f=>{if(s[f[0]])formData.append(f[1],s[f[0]])});
+fetch("https://formspree.io/f/xdeokqja",{method:"POST",body:formData,headers:{"Accept":"application/json"}}).catch(err=>console.log("Email queued for sending"));
+}};
+W.render();
+
+/* Tracker */
+const STAGES=["Login","Document check","Credit assessment / Tele-PD","Collateral and legal","Final approval","Disbursement"];
+$("#trkForm").onsubmit=e=>{e.preventDefault();const q=$("#tref").value.trim().toUpperCase(),o=$("#trkOut");
+if(!q){o.innerHTML='<p class="errbox" role="alert">Enter the reference number you received when you saved your enquiry.</p>';return}
+const r=store.get("phl_enq",[]).find(x=>x.ref===q);
+if(!r){o.innerHTML='<p class="errbox" role="alert">No enquiry with that reference was found on this device. Check the number, or use the browser where you saved it.</p>';return}
+o.innerHTML=`<div class="clay" style="padding:32px"><b style="font-size:1.2rem">${esc(r.ref)}</b> · ${esc(PRODUCTS[r.product].name)} · ${inr(r.amount)} <span class="badge">${esc(r.status)}</span><p style="margin:16px 0;font-size:0.95rem">Saved ${new Date(r.created).toLocaleString("en-IN")}</p><ol class="tl">${STAGES.map((s,i)=>`<li class="${i===0?"cur":""}"><span class="dot">${i+1}</span>${esc(s)} – ${i===0?"Awaiting contact from authorised representative":"Not started"}</li>`).join("")}</ol><p style="font-size:0.9rem;margin-top:20px;color:var(--muted)">Demo tracker: stages move only when an authorised lender or team member updates a real application. This enquiry has not been sanctioned or approved.</p></div>`};
+
+/* Partners */
+$("#pcta").innerHTML=[["Individual DSA","Register as DSA"],["Aggregator","Register as Aggregator"],["Corporate partner","Corporate Partnership"],["Individual connector","Register as Connector"]].map(([v,t])=>`<button class="btn ${v==="Individual DSA"?"btn-accent":"btn-ghost"}" data-v="${v}">${t}</button>`).join("");
+$$("#pcta button").forEach(b=>b.onclick=()=>{$("#pc").value=b.dataset.v;$("#ptForm").scrollIntoView({block:"center"});$("#pn").focus()});
+
+/* Formspree Partner Form Handler */
+$("#ptForm").onsubmit=async function(e){
+e.preventDefault();
+const v=id=>$("#"+id).value.trim(),er=[];
+if(v("pn").length<2)er.push("Enter the name or organisation.");
+if(v("pp").length<2)er.push("Enter the contact person.");
+if(!/^[6-9]\d{9}$/.test(v("pm")))er.push("Enter a valid 10-digit mobile number.");
+if(!/^\S+@\S+\.\S+$/.test(v("pe")))er.push("Enter a valid email.");
+if(!v("pcity"))er.push("Enter the city.");
+if(!/^\d{6}$/.test(v("ppin")))er.push("Enter a 6-digit PIN code.");
+if(!$("#pcons").checked)er.push("Please accept the consent to continue.");
+if(er.length){$("#perr").innerHTML=er.map(esc).join("<br>");return}
+$("#perr").textContent="";
+const btn=$("#pSubmit");
+btn.classList.add("loading");
+btn.disabled=true;
+try{
+const formData=new FormData(this);
+formData.append("_subject","New Partner Registration - Prime Home Loan Desk");
+formData.append("_cc","saurabh.kumar@bajajhousing.biz,dekhog1234@gmail.com");
+const response=await fetch("https://formspree.io/f/xdeokqja",{method:"POST",body:formData,headers:{"Accept":"application/json"}});
+if(response.ok){
+const ref=rid("PTR");
+$("#pout").innerHTML=`<div class="successbox"><p style="font-size:1.1rem"><b>Registration submitted successfully!</b></p><p style="margin:12px 0">Reference <span class="ref" style="font-size:1.2rem">${esc(ref)}</span><br><span class="badge">Submitted – verification pending</span></p><p style="font-size:0.9rem;margin-top:16px">A confirmation email has been sent to <b>${esc(v("pe"))}</b>. Our team will review your application and contact you within 2-3 business days.</p></div>`;
+this.reset();
+$("#pcons").checked=false;
+}else{
+throw new Error("Submission failed");
+}
+}catch(err){
+$("#perr").textContent="There was an error submitting your registration. Please try again or contact us directly.";
+}finally{
+btn.classList.remove("loading");
+btn.disabled=false;
+}
+};
+
+function payout(){const a=+$("#qa").value,r=+$("#qr").value;if(!(a>=0)||!(r>=0)){$("#qout").textContent="Enter valid numbers.";return}
+const bp=Math.round(r*100),amt=a*bp/10000;$("#qout").innerHTML=`${inr(a)} × ${r}% = <b>${inr(amt)}</b> before deductions and TDS. Illustrative only, not a guaranteed or current payout.`}
+payout();
+
+/* Customer Connect Modal Logic */
+function toggleConnectModal() {
+  const modal = document.getElementById('connectModal');
+  modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+}
+
+document.getElementById('connectForm').onsubmit = async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('connSubmit');
+  const originalText = btn.innerHTML;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  btn.innerHTML = 'Sending...';
+  
+  try {
+    const formData = new FormData(this);
+    const response = await fetch("https://formspree.io/f/xdeokqja", {
+      method: "POST",
+      body: formData,
+      headers: { "Accept": "application/json" }
+    });
+    
+    if (response.ok) {
+      document.getElementById('connOut').innerHTML = `
+        <div class="successbox" style="margin-top: 16px;">
+          <b>Thank you!</b> Our team will contact you shortly at the provided number/email.
+        </div>
+      `;
+      this.reset();
+      setTimeout(() => {
+        toggleConnectModal();
+        document.getElementById('connOut').innerHTML = '';
+      }, 3000);
+    } else {
+      throw new Error("Submission failed");
+    }
+  } catch (err) {
+    document.getElementById('connOut').innerHTML = '<div class="errbox" style="margin-top: 16px;">Failed to send. Please try again or email us directly.</div>';
+  } finally {
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
+};
+</script>
+</body>
+</html>
